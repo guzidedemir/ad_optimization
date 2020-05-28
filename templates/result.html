@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic Modelling for {{ userData|safe }}</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tree.css') }}">
+    <style>
+        #header{font-size:20px; }
+        .box_level0,.box_level1,.box_level2{
+            border:2px solid dodgerblue;
+            padding:60px;
+
+        }
+
+    </style>
+
+    <style>
+
+        body {
+  font-family: Calibri, Segoe, "Segoe UI", "Gill Sans", "Gill Sans MT", sans-serif;
+}
+
+/* It's supposed to look like a tree diagram */
+.tree, .tree ul, .tree li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.tree {
+    margin: 0 0 1em;
+    text-align: center;
+}
+.tree, .tree ul {
+    display: table;
+}
+.tree ul {
+  width: 100%;
+}
+    .tree li {
+        display: table-cell;
+        padding: .5em 0;
+        vertical-align: top;
+    }
+        /* _________ */
+        .tree li:before {
+            outline: solid 1px #666;
+            content: "";
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .tree li:first-child:before {left: 50%;}
+        .tree li:last-child:before {right: 50%;}
+
+        .tree code, .tree span {
+            border: solid .1em #666;
+            border-radius: .2em;
+            display: inline-block;
+            margin: 0 .2em .5em;
+            padding: .2em .5em;
+            position: relative;
+
+        }
+        /* If the tree represents DOM structure */
+        .tree code {
+            font-family: monaco, Consolas, 'Lucida Console', monospace;
+        }
+
+            /* | */
+            .tree ul:before,
+            .tree code:before,
+            .tree span:before {
+                outline: solid 1px #666;
+                content: "";
+                height: .5em;
+                left: 50%;
+                position: absolute;
+            }
+            .tree ul:before {
+                top: -.5em;
+            }
+            .tree code:before,
+            .tree span:before {
+                top: -.55em;
+            }
+
+/* The root node doesn't connect upwards */
+.tree > li {margin-top: 0;}
+    .tree > li:before,
+    .tree > li:after,
+    .tree > li > code:before,
+    .tree > li > span:before {
+      outline: none;
+    }
+
+
+
+
+
+    </style>
+
+
+
+</head>
+<body>
+<div style="color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3);">
+        <h1 id="header">Here are some suggestions for your advertisement:</h1>
+        <p><b>{{ userData}}</b></p>
+    <a href="/"><button>Back to Home</button></a>
+        <ul class="tree">
+          <li> <span>{{level0box1}} </span>
+            <ul>
+                <li> <span>{{level1box1}}</span>
+                    <ul>
+                        <li> <span>{{level2box1}}</span></li>
+                        <li> <span>{{level2box2}}</span></li>
+                        <li> <span>{{level2box3}}</span></li>
+                    </ul>
+                </li>
+
+                <li> <span>{{level1box2}}</span>
+                    <ul>
+                        <li> <span>{{level2box4}}</span></li>
+                        <li> <span>{{level2box5}}</span></li>
+                        <li> <span>{{level2box6}}</span></li>
+                    </ul>
+                </li>
+
+                <li> <span>{{level1box3}}</span>
+                    <ul>
+                        <li> <span>{{level2box7}}</span></li>
+                        <li> <span>{{level2box8}}</span></li>
+                        <li> <span>{{level2box9}}</span></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+          </li>
+        </ul>
+    </div>
+</body>
+</html>
