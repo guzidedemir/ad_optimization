@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, render_template
-
+import pandas as pd
+import model
 app = Flask(__name__)
+
 
 
 @app.route('/')
@@ -9,6 +11,13 @@ def home():
 
 
 @app.route('/tree', methods=['POST'])
+def predict():
+    df = pd.read_csv('static/healtcare2.csv')
+    model.Model(df)
+    return suggestion()
+
+
+@app.route('/tree_result', methods=['POST', 'GET'])
 def suggestion():
     topic_list = []
     with open('static/HLDA.txt') as topics_file:
