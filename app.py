@@ -4,7 +4,6 @@ import model
 app = Flask(__name__)
 
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -12,13 +11,13 @@ def home():
 
 @app.route('/tree', methods=['POST'])
 def predict():
-    df = pd.read_csv('static/healtcare2.csv')
+    search_file_name = request.files['search_file'].filename
+    df = pd.read_csv(request.files['search_file'])
     model.Model(df)
-    return suggestion()
+    return suggestion(search_file_name)
 
 
-@app.route('/tree_result', methods=['POST', 'GET'])
-def suggestion():
+def suggestion(search_file_name):
     topic_list = []
     with open('static/HLDA.txt') as topics_file:
         for i in topics_file:
@@ -60,7 +59,7 @@ def suggestion():
     level2_box9 = level2_list[8]
 
     return render_template("result.html",
-                           userData=request.form["search_text"],
+                           userData=search_file_name,
                            level0box1=level0_box1,
                             level1box1= level1_box1,
                             level1box2= level1_box2,

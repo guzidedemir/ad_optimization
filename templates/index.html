@@ -16,8 +16,9 @@
 	<h1>OPTIMAL AD</h1>
 
      <!-- Main Input For Receiving Query to our ML -->
-    <form action="/tree" method="post">
-    	<input type="text" name="search_text" placeholder="Please enter your topic" required="required" />
+    <form action="/tree" method="post" enctype="multipart/form-data">
+    	<!--<input type="text" name="search_text" placeholder="Please enter your topic" required="required" />-->
+        <input type=file name="search_file" required="required">
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
