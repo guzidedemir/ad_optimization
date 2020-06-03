@@ -110,13 +110,13 @@ class Model:
 
     def hiearachical_lda(self):
 
-        n_samples = 10  # no of iterations for the sampler
+        n_samples = 3  # no of iterations for the sampler
         alpha = 10.0  # smoothing over level distributions
         gamma = 1.0  # CRP smoothing parameter; number of imaginary customers at next, as yet unused table
         eta = 0.1  # smoothing over topic-word distributions
         num_levels = 3  # the number of levels in the tree
-        display_topics = 3  # the number of iterations between printing a brief summary of the topics so far
-        n_words = 5  # the number of most probable words to print for each topic after model estimation
+        display_topics = 2  # the number of iterations between printing a brief summary of the topics so far
+        n_words = 3  # the number of most probable words to print for each topic after model estimation
         with_weights = False  # whether to print the words with the weights
 
         common_dictionary_t = Dictionary(self.texts)
@@ -131,6 +131,6 @@ class Model:
             new_corpus.append(new_doc)
 
         hlda_model = py3hlda.sampler.HierarchicalLDA(new_corpus, voc, alpha=alpha, gamma=gamma, eta=eta, num_levels=num_levels)
-        estimation = hlda_model.estimate(n_samples, display_topics=display_topics, n_words=n_words, with_weights=with_weights)
-        with open('static/HLDA.txt', 'wb') as txt_file:
-            txt_file.write(estimation)
+
+        with open('static/HLDA.txt', 'w') as txt_file:
+            hlda_model.estimate(n_samples, display_topics=display_topics, n_words=n_words, with_weights=with_weights, txt=txt_file)
